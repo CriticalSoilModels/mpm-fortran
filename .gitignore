@@ -1,0 +1,6 @@
+build/
+.fpm/
+*.mod
+*.smod
+*.o
+*.a

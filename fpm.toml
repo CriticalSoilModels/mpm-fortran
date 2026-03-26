@@ -1,0 +1,13 @@
+name = "mpm-fortran"
+version = "0.1.0"
+license = "MIT"
+
+[build]
+auto-executables = true
+auto-tests = true
+
+[dependencies]
+stdlib = { git = "https://github.com/fortran-lang/stdlib", branch = "stdlib-fpm" }
+
+[dev-dependencies]
+test-drive = { git = "https://github.com/fortran-lang/test-drive.git/" }
