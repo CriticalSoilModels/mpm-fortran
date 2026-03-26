@@ -5,6 +5,18 @@ the architecture should not actively prevent them.
 
 ---
 
+## Axisymmetric Problem Types
+
+`PROB_2D_AXISYM` and `PROB_3D_AXISYM` are deferred. When added:
+
+- Restore `PROB_2D_AXISYM = 4` (and `PROB_3D_AXISYM = 5` if needed) in `mpm_precision`
+- Add `case (PROB_2D_AXISYM)` back to `n_voigt` (returns 4) and `n_dims` (returns 2)
+- Shape functions require the Jacobian in cylindrical coordinates
+- The weak form gains a `1/r` weighting term — this affects P2G and grid force assembly
+- Stress components map as: V_11=σ_rr, V_22=σ_zz, V_33=σ_θθ, V_12=σ_rz
+
+---
+
 ## Multiphase (Solid + Water + Air)
 
 ### Motivation

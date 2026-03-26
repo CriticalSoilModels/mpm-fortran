@@ -3,6 +3,9 @@ module mpm_precision
    !!
    !! All modules use `wp` as the working real kind. To switch the entire
    !! codebase to single precision, change `wp = dp` to `wp = sp` here.
+   !!
+   !! Supported problem types: PROB_1D, PROB_2D_PLANE_STRAIN, PROB_3D.
+   !! Axisymmetric variants are deferred — see notes/future_plan.md.
    use stdlib_kinds, only: sp, dp
    implicit none
    private
@@ -13,8 +16,7 @@ module mpm_precision
    ! --- problem type constants ---
    integer, parameter, public :: PROB_1D              = 1
    integer, parameter, public :: PROB_2D_PLANE_STRAIN = 2
-   integer, parameter, public :: PROB_2D_AXISYM       = 3
-   integer, parameter, public :: PROB_3D              = 4
+   integer, parameter, public :: PROB_3D              = 3
 
    ! --- Voigt index labels (canonical ordering [11,22,33,12,13,23]) ---
    integer, parameter, public :: V_11 = 1
@@ -30,14 +32,14 @@ module mpm_precision
 contains
 
    pure function n_voigt(problem_type) result(nv)
-      !! Return the number of independent stress/strain components for the
-      !! given problem type. 1D→1, plane strain/axisym→4, 3D→6.
+      !! Return the number of independent stress/strain components.
+      !! 1D→1, 2D plane strain→4, 3D→6.
       integer, intent(in) :: problem_type
       integer :: nv
       select case (problem_type)
          case (PROB_1D)
             nv = 1
-         case (PROB_2D_PLANE_STRAIN, PROB_2D_AXISYM)
+         case (PROB_2D_PLANE_STRAIN)
             nv = 4
          case (PROB_3D)
             nv = 6
@@ -47,13 +49,14 @@ contains
    end function n_voigt
 
    pure function n_dims(problem_type) result(nd)
-      !! Return the number of spatial dimensions for the given problem type.
+      !! Return the number of spatial dimensions.
+      !! 1D→1, 2D plane strain→2, 3D→3.
       integer, intent(in) :: problem_type
       integer :: nd
       select case (problem_type)
          case (PROB_1D)
             nd = 1
-         case (PROB_2D_PLANE_STRAIN, PROB_2D_AXISYM)
+         case (PROB_2D_PLANE_STRAIN)
             nd = 2
          case (PROB_3D)
             nd = 3

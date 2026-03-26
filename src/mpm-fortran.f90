@@ -4,7 +4,7 @@ module mpm_fortran
    !! Consumers can either `use mpm_fortran` to get everything, or import
    !! individual modules directly for finer control.
    use mpm_precision, only: wp, &
-                             PROB_1D, PROB_2D_PLANE_STRAIN, PROB_2D_AXISYM, PROB_3D, &
+                             PROB_1D, PROB_2D_PLANE_STRAIN, PROB_3D, &
                              V_11, V_22, V_33, V_12, V_13, V_23, &
                              n_voigt, n_dims
    use mpm_particles, only: mpm_particle_set_t, &
@@ -16,7 +16,7 @@ module mpm_fortran
    private
 
    public :: wp
-   public :: PROB_1D, PROB_2D_PLANE_STRAIN, PROB_2D_AXISYM, PROB_3D
+   public :: PROB_1D, PROB_2D_PLANE_STRAIN, PROB_3D
    public :: V_11, V_22, V_33, V_12, V_13, V_23
    public :: n_voigt, n_dims
    public :: mpm_particle_set_t
