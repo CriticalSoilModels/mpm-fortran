@@ -12,6 +12,10 @@ module mpm_fortran
    use mpm_update_config,  only: mpm_update_config_t, &
                                   SCHEME_FLIP_PIC, SCHEME_APIC, SCHEME_XPIC, &
                                   is_valid_config
+   use mpm_grid,           only: mpm_grid_t, nodes_per_cell, &
+                                  allocate_grid, deallocate_grid, &
+                                  build_regular_grid_1d, &
+                                  reset_grid, apply_bcs, update_grid
    implicit none
    private
 
@@ -24,5 +28,9 @@ module mpm_fortran
    public :: mpm_update_config_t
    public :: SCHEME_FLIP_PIC, SCHEME_APIC, SCHEME_XPIC
    public :: is_valid_config
+   public :: mpm_grid_t, nodes_per_cell
+   public :: allocate_grid, deallocate_grid
+   public :: build_regular_grid_1d
+   public :: reset_grid, apply_bcs, update_grid
 
 end module mpm_fortran
