@@ -10,6 +10,9 @@ module mpm_fortran
    use mpm_particles, only: mpm_particle_set_t, mpm_phase_config_t, &
                              PHASE_SOLID, PHASE_LIQUID, PHASE_GAS, &
                              allocate_particle_set, deallocate_particle_set
+   use mpm_update_config, only: mpm_update_config_t, &
+                                 SCHEME_FLIP_PIC, SCHEME_APIC, SCHEME_XPIC, &
+                                 is_valid_config
    implicit none
    private
 
@@ -20,5 +23,8 @@ module mpm_fortran
    public :: mpm_particle_set_t, mpm_phase_config_t
    public :: PHASE_SOLID, PHASE_LIQUID, PHASE_GAS
    public :: allocate_particle_set, deallocate_particle_set
+   public :: mpm_update_config_t
+   public :: SCHEME_FLIP_PIC, SCHEME_APIC, SCHEME_XPIC
+   public :: is_valid_config
 
 end module mpm_fortran
