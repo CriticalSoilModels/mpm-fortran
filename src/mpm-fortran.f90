@@ -12,6 +12,7 @@ module mpm_fortran
    use mpm_update_config,  only: mpm_update_config_t, &
                                   SCHEME_FLIP_PIC, SCHEME_APIC, SCHEME_XPIC, &
                                   is_valid_config
+   use mpm_shapefn_linear, only: locate_cell_1d, eval_linear_1d
    use mpm_grid,           only: mpm_grid_t, nodes_per_cell, &
                                   allocate_grid, deallocate_grid, &
                                   build_regular_grid_1d, &
@@ -32,5 +33,6 @@ module mpm_fortran
    public :: allocate_grid, deallocate_grid
    public :: build_regular_grid_1d
    public :: reset_grid, apply_bcs, update_grid
+   public :: locate_cell_1d, eval_linear_1d
 
 end module mpm_fortran
