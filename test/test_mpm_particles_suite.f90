@@ -1,7 +1,8 @@
 module test_mpm_particles_suite
    !! Tests for mpm_particles: allocation shapes, zero-init, deallocation.
    use testdrive,    only: new_unittest, unittest_type, error_type, check
-   use mpm_precision, only: wp, PROB_1D, PROB_3D
+   use mpm_precision,      only: wp
+   use mpm_problem_config, only: PROB_1D, PROB_3D
    use mpm_particles, only: mpm_particle_set_t, &
                              allocate_particle_set, deallocate_particle_set
    implicit none

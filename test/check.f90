@@ -1,10 +1,10 @@
 program test_runner
    !! Test-drive runner — collects and executes all test suites.
-   use iso_fortran_env,           only: error_unit
-   use testdrive,                 only: run_testsuite, new_testsuite, testsuite_type
-   use test_mpm_precision_suite,     only: collect_mpm_precision_suite
-   use test_mpm_particles_suite,     only: collect_mpm_particles_suite
-   use test_mpm_update_config_suite, only: collect_mpm_update_config_suite
+   use iso_fortran_env,                only: error_unit
+   use testdrive,                      only: run_testsuite, new_testsuite, testsuite_type
+   use test_mpm_problem_config_suite,  only: collect_mpm_problem_config_suite
+   use test_mpm_particles_suite,       only: collect_mpm_particles_suite
+   use test_mpm_update_config_suite,   only: collect_mpm_update_config_suite
    implicit none
 
    integer :: stat, is
@@ -14,9 +14,9 @@ program test_runner
    stat = 0
 
    testsuites = [ &
-      new_testsuite("mpm_precision",     collect_mpm_precision_suite),     &
-      new_testsuite("mpm_particles",     collect_mpm_particles_suite),     &
-      new_testsuite("mpm_update_config", collect_mpm_update_config_suite)  &
+      new_testsuite("mpm_problem_config", collect_mpm_problem_config_suite), &
+      new_testsuite("mpm_particles",      collect_mpm_particles_suite),      &
+      new_testsuite("mpm_update_config",  collect_mpm_update_config_suite)   &
    ]
 
    do is = 1, size(testsuites)

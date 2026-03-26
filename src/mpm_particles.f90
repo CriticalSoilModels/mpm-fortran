@@ -4,7 +4,8 @@ module mpm_particles
    !! Particles are stored in SOA (Structure of Arrays) layout: first index is
    !! the component, second is the particle number. This ensures contiguous
    !! memory access per component in GPU kernels (Fortran column-major).
-   use mpm_precision, only: wp, n_voigt, n_dims
+   use mpm_precision,      only: wp
+   use mpm_problem_config, only: n_voigt, n_dims
    implicit none
    private
 

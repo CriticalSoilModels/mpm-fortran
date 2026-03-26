@@ -25,18 +25,61 @@ fpm build
 # Run all tests
 fpm test
 
-# Run a specific test suite
-fpm test -- test_<suite_name>
+# Run a specific test by name (glob supported: ? = any char, * = any string)
+fpm test --target test_mpm_grid
+
+# Pass arguments to the test executable
+fpm test -- -x 10 -y 20
+
+# List available test targets without running them
+fpm test --list
+
+# Run with release optimisations
+fpm test --profile release
 
 # Run the main application
 fpm run
 
+# Run a specific executable
+fpm run --target mpm_solver
+
 # Build with OpenACC for AMD GPU (ROCm/HIP backend)
 fpm build --flag "-fopenacc -foffload=amdgcn-amdhsa"
+
+# Build with a different compiler
+fpm build --compiler amdflang
+
+# Clean build artefacts (keeps dependencies)
+fpm clean
+
+# Clean everything including dependencies
+fpm clean --all
+
+# Update dependencies
+fpm update
 
 # Generate documentation (requires ford)
 ford fpm.toml
 ```
+
+### Key fpm flags
+
+| Flag | Description |
+|------|-------------|
+| `--profile debug\|release` | Compilation profile; default is `debug` |
+| `--flag FFLAGS` | Extra Fortran compiler flags (appended to profile defaults) |
+| `--compiler NAME` | Override Fortran compiler (default: `gfortran`; env: `FPM_FC`) |
+| `--no-prune` | Disable tree-shaking of unused module dependencies |
+| `--verbose` | Display additional build/run information |
+| `--build-dir DIR` | Override build output directory (env: `FPM_BUILD_DIR`) |
+
+### Environment variables
+
+| Variable | Purpose |
+|----------|---------|
+| `FPM_FC` | Default Fortran compiler |
+| `FPM_FFLAGS` | Default Fortran compiler flags |
+| `FPM_BUILD_DIR` | Default build directory |
 
 ### Environment Setup
 ```bash
